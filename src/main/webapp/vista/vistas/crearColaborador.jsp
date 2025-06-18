@@ -1,0 +1,134 @@
+<%-- 
+    Document   : crearColaborador
+    Created on : 17/06/2025, 2:36:47 p. m.
+    Author     : kelly
+--%>
+
+<%@page import="controlador.ConsultaCargo"%>
+<%@page import="controlador.ConsultaDepartamento"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="../../publico/css/bootstrap.css" type="text/css" rel="stylesheet" />
+        <title>Crear Colaborador</title>
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                
+                $('#departamento').change(function() {
+                    $('#ciudad').find('option').remove();
+                    4('#ciudad').append('<option>Seleccione la ciudad...</option>');
+                    let cid = $('#departamento').val();
+                    let data = {
+                        operacion: "ciudad",
+                        id: cid
+                    }; 
+                });
+                
+                $.ajax({
+                    url: "../../DepartamentoCiudad",
+                    method: "GET",
+                    data: data,
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(data);
+                        let obj = $.parseJSON(data);
+                        $.each(obj, function (key, value){
+                            $('#ciudad').append('<option value="'+value.id+'">'+value.name+'</option>');
+                        });
+                        $('select').formSelect();                         
+                    },
+                    error: function(jqXHR, textStatus, errorThrow) {
+                            $('#ciudad').append('<option>El Departamento no tiene ciudades</option>');
+                           },
+                    cache: false        
+                });
+            });
+        </script>
+        
+        
+        
+    </head>
+    <body>
+        <%-- Header --%>
+        <%@include file="../../plantillas/header.jsp" %>
+        <%-- Body --%>
+        
+        <div class="container">
+            <center>
+                <h4>Crear nuevo colaborador</h4>
+            </center>                    
+        </div>
+
+        <div class="container">
+            <form action="../../Colaborador" method="POST" class="row g-3">
+
+                <div class="col-md-4">
+                    <label for="inputColaborador" class="form-label">Identificación</label>
+                    <input type="text"id="identificacion" name="identificacion" class="form-control"  title="Ingrese el número de identificación" required="">
+                </div>
+
+                <div class="col-md-8">
+                    <label for="inputNombre" class="form-label">Nombres y apellidos</label>
+                    <input type="text"id="nombres" name="nombres" class="form-control"  title="Ingrese nombres y apellidos" required="">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="inputCorreo" class="form-label">Correo electrónico</label>
+                    <input type="text"id="correo" name="correo" class="form-control"  title="Ingrese el correo electrónico" required="">
+                </div>
+
+                <div class="col-md-2">
+                    <label for="departamento" class="form-label">Departamento</label>
+                    <select id="departamento" name="departamento" class="form-select">
+                        <option selected>Seleccione...</option>
+                        <% ConsultaDepartamento cd = new ConsultaDepartamento();%>
+                        <%= cd.obtenerSelectDepartamento()%>
+                    </select>                    
+                </div>
+
+                <div class="col-md-2">
+                    <label for="ciudad" class="form-label">Ciudad</label>
+                    <select id="ciudad" name="ciudad" class="form-select">
+                        <option value="">Seleccione la ciudad...</option>
+                    </select>                    
+                </div>
+
+                <div class="col-md-2">
+                    <label for="indicativo" class="form-label">Indicativo</label>
+                    <select id="indicativo" name="indicativo" class="form-select">
+                        <option selected disabled value="">Seleccione...</option>
+
+                    </select>                    
+                </div>
+
+                <div class="col-md-3">
+                    <label for="inputCelular" class="form-label">Celular</label>
+                    <input type="text"id="celular" name="celular" class="form-control"  title="Ingrese el número de celular" required="">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="cargo" class="form-label">Cargo</label>
+                    <select id="cargo" name="cargo" class="form-select">
+                        <option selected>Seleccione...</option>
+                        <% ConsultaCargo cargo = new ConsultaCargo();%>
+                        <%= cargo.obtenerSelectCargo()%>
+                    </select>                    
+                </div>    
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" name="crearColaborador" value="crearColaborador" class="btn btn-primary">Crear</button>
+                    <a class="btn btn-primary" href="../almacenista.jsp" role="button">Regresar</a>
+                </div>
+            </form>
+        </div>
+        
+        
+        <%-- Fin de Body --%>
+        <%-- Footer --%>
+        <%@include file="../../plantillas/footer.jsp" %>
+        <script src="../../publico/js/bootstrap.js" type="text/javascript"  ></script>
+        
+    </body>
+</html>

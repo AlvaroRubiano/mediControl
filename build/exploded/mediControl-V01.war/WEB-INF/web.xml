@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="6.1" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_1.xsd">
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>controlador.ServletLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Colaborador</servlet-name>
+        <servlet-class>controlador.ServletColaborador</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DepartamentoCiudad</servlet-name>
+        <servlet-class>controlador.ServletDepartamentoCiudad</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Colaborador</servlet-name>
+        <url-pattern>/Colaborador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DepartamentoCiudad</servlet-name>
+        <url-pattern>/DepartamentoCiudad</url-pattern>
+    </servlet-mapping>
+</web-app>
