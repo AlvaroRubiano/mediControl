@@ -13,48 +13,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="../../publico/css/bootstrap.css" type="text/css" rel="stylesheet" />
         <title>Crear Colaborador</title>
-        
-        <script type="text/javascript">
-            $(document).ready(function() {
-                
-                $('#departamento').change(function() {
-                    $('#ciudad').find('option').remove();
-                    4('#ciudad').append('<option>Seleccione la ciudad...</option>');
-                    let cid = $('#departamento').val();
-                    let data = {
-                        operacion: "ciudad",
-                        id: cid
-                    }; 
-                });
-                
-                $.ajax({
-                    url: "../../DepartamentoCiudad",
-                    method: "GET",
-                    data: data,
-                    success: function (data, textStatus, jqXHR) {
-                        console.log(data);
-                        let obj = $.parseJSON(data);
-                        $.each(obj, function (key, value){
-                            $('#ciudad').append('<option value="'+value.id+'">'+value.name+'</option>');
-                        });
-                        $('select').formSelect();                         
-                    },
-                    error: function(jqXHR, textStatus, errorThrow) {
-                            $('#ciudad').append('<option>El Departamento no tiene ciudades</option>');
-                           },
-                    cache: false        
-                });
-            });
-        </script>
-        
-        
-        
+
     </head>
     <body>
         <%-- Header --%>
         <%@include file="../../plantillas/header.jsp" %>
         <%-- Body --%>
-        
+
         <div class="container">
             <center>
                 <h4>Crear nuevo colaborador</h4>
@@ -82,16 +47,14 @@
                 <div class="col-md-2">
                     <label for="departamento" class="form-label">Departamento</label>
                     <select id="departamento" name="departamento" class="form-select">
-                        <option selected>Seleccione...</option>
-                        <% ConsultaDepartamento cd = new ConsultaDepartamento();%>
-                        <%= cd.obtenerSelectDepartamento()%>
+                        <option>Seleccione un Departamento</option>
                     </select>                    
                 </div>
 
                 <div class="col-md-2">
                     <label for="ciudad" class="form-label">Ciudad</label>
                     <select id="ciudad" name="ciudad" class="form-select">
-                        <option value="">Seleccione la ciudad...</option>
+                        <option>Seleccione una ciudad</option>
                     </select>                    
                 </div>
 
@@ -99,7 +62,6 @@
                     <label for="indicativo" class="form-label">Indicativo</label>
                     <select id="indicativo" name="indicativo" class="form-select">
                         <option selected disabled value="">Seleccione...</option>
-
                     </select>                    
                 </div>
 
@@ -123,12 +85,63 @@
                 </div>
             </form>
         </div>
-        
-        
+
+
         <%-- Fin de Body --%>
         <%-- Footer --%>
         <%@include file="../../plantillas/footer.jsp" %>
         <script src="../../publico/js/bootstrap.js" type="text/javascript"  ></script>
-        
+        <script src="../../publico/js/jQuery_3.7.1.js" type="text/javascript"  ></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $.ajax({
+                    url: "../../DepartamentoCiudad",
+                    method: "GET",
+                    data: {operacion: "departamento"},
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(data);
+                        let obj = $.parseJSON(data);
+                        $.each(obj, function (key, value) {
+                            $('#departamento').append('<option value="' + value.idDepartamento + '">' + value.departamento + '</option>');
+                        });
+                        //$('select').formSelect();
+                    },
+                    error: function (jqXHR, textStatus, errorThrow) {
+                        $('#ciudad').append('<option>Departamentos no disponibles</option>');
+                    },
+                    cache: false
+                });
+
+                $('#departamento').change(function () {
+                    $('#ciudad').find('option').remove();
+                    $('#ciudad').append('<option>Seleccione la ciudad...</option>');
+
+                    let cid = $('#departamento').val();
+                    console.log(cid);
+                    let data2 = {
+                        operacion: "ciudad",
+                        id: cid
+                    };
+
+                    $.ajax({
+                        url: "../../DepartamentoCiudad",
+                        method: "GET",
+                        data: data2,
+                        success: function (data, textStatus, jqXHR) {
+                            console.log(data);
+                            let obj = $.parseJSON(data);
+                            $.each(obj, function (key, value) {
+                                $('#ciudad').append('<option value="' + value.idCiudad + '">' + value.ciudad + '</option>');
+                            });
+                            $('select').formSelect();
+                        },
+                        error: function (jqXHR, textStatus, errorThrow) {
+                            $('#ciudad').append('<option>Ciudades no disponibles</option>');
+                        },
+                        cache: false
+                    });
+                });
+            });
+        </script>
     </body>
 </html>

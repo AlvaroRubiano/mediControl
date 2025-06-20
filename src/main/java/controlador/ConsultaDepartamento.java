@@ -66,4 +66,17 @@ public class ConsultaDepartamento extends Conexion {
         return htmlcode;
     }
     
+    /**
+    public static void main(String[] args) {
+        
+        ConsultaDepartamento cd = new ConsultaDepartamento();
+        
+        for( Departamento de : cd.obtenerDepartamento() ){            
+            int dato = de.getIdDepartamento();            
+            System.out.println(de);
+        }
+        
+        
+    }*/
+    
 }

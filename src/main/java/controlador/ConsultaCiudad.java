@@ -163,10 +163,10 @@ public class ConsultaCiudad extends Conexion {
         
     }
     */
-    /** 
+    /**
     public static void main(String[] args) {
         
-        int departamento = 5;
+        int departamento = 1;
         
         ConsultaCiudad c = new ConsultaCiudad();
         

@@ -12,7 +12,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import javax.swing.JOptionPane;
 import modelo.Ciudad;
+import modelo.Departamento;
 
 /**
  *
@@ -34,12 +36,22 @@ public class ServletDepartamentoCiudad extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            ConsultaCiudad consulta = new ConsultaCiudad();
+            ConsultaDepartamento consultaD = new ConsultaDepartamento();
+            ConsultaCiudad consultaC = new ConsultaCiudad();
+            
             String operacion = request.getParameter("operacion");
+            
+            if(operacion.equals("departamento")){
+                List<Departamento> listaDepartamento = consultaD.obtenerDepartamento();
+                Gson json = new Gson();
+                String lista = json.toJson(listaDepartamento);
+                response.setContentType("text/html");
+                response.getWriter().write(lista);
+            }
             
             if(operacion.equals("ciudad")){
                 int idDepartamento = Integer.parseInt(request.getParameter("id"));
-                List<Ciudad> listaCiudad = consulta.obtenerCiudadDepartemtno(idDepartamento);
+                List<Ciudad> listaCiudad = consultaC.obtenerCiudadDepartemtno(idDepartamento);
                 Gson json = new Gson();
                 String lista = json.toJson(listaCiudad);
                 response.setContentType("text/html");
