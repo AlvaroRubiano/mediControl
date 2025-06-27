@@ -5,6 +5,15 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    HttpSession objetoSession = request.getSession(false);
+    String cargo = (String)objetoSession.getAttribute("Cargo");
+    if(cargo.equals(" ")){
+        response.sendRedirect("../index.jsp");
+    }  
+%>
+
+
 <!DOCTYPE html>
 <html>
     <head>

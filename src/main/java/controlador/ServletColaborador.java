@@ -10,10 +10,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author kelly
+ * @author Alvaro Rubiano
  */
 public class ServletColaborador extends HttpServlet {
 
@@ -29,18 +30,45 @@ public class ServletColaborador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletColaborador</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletColaborador at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        PrintWriter out = response.getWriter();
+        
+        String boton = request.getParameter("crearColaborador");
+        
+        if(boton.equals("crearColaborador")){        
+        
+        int identificacion = Integer.parseInt(request.getParameter("identificacion"));
+        String nombre = request.getParameter("nombres");
+        String correo = request.getParameter("correo");
+        String indicativo = request.getParameter("indicativo");
+        String celular = request.getParameter("celular");
+        String dirección = request.getParameter("direccion");
+        String rh = request.getParameter("rh");
+        int ciudad = Integer.parseInt(request.getParameter("ciudad"));
+        String natalidad = request.getParameter("cumpleanos");
+        String ingreso = request.getParameter("ingreso");
+        int cargo = Integer.parseInt(request.getParameter("cargo"));
+        
+        String telefono = indicativo+celular;
+        
+        ConsultaColaborador consulta = new ConsultaColaborador();
+        
+        Boolean resultado = consulta.crearColaborador(identificacion, nombre, correo, telefono, dirección, rh, ciudad, cargo, natalidad, ingreso);
+            
+            if(resultado.equals(true)){
+                JOptionPane.showMessageDialog(null, "Colaborador creado con éxito");
+                response.sendRedirect("index.jsp");
+            }//Fin del if interno
+            
+            if(resultado.equals(false)){
+                JOptionPane.showMessageDialog(null, "Error en la creación del colaborador");
+                response.sendRedirect("index.jsp");
+            }
+        
+        
+        }//Fin del If
+        
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

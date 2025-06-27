@@ -33,7 +33,7 @@
                 
                 <div class="col-md-2">
                     <label for="inputColaborador" class="form-label">Identificación</label>
-                    <input type="text"id="identificacion" name="identificacion" class="form-control"  title="Ingrese el número de identificación" minlength="6" maxlength="10" pattern="0-9" required>
+                    <input type="text"id="identificacion" name="identificacion" class="form-control"  title="Ingrese el número de identificación" minlength="6" maxlength="10" required>
                 </div>
 
                 <div class="col-md-6">
@@ -57,12 +57,12 @@
 
                 <div class="col-md-2">
                     <label for="inputCelular" class="form-label">Celular</label>
-                    <input type="tel"id="celular" name="celular" class="form-control"  title="Ingrese el número de celular" maxlength="10" required pattern="[3]+[0-9]" required="Ingrese un número de celular válido">
+                    <input type="tel"id="celular" name="celular" class="form-control"  title="Ingrese el número de celular" minlength="10" maxlength="10" required>
                 </div>
                 
                 <div class="col-md-4">
                     <label for="inputDireccion" class="form-label">Dirección</label>
-                    <input type="text"id="direccion" name="direccion" class="form-control"  title="Ingrese una dirección" required="">
+                    <input type="text"id="direccion" name="direccion" class="form-control"  title="Ingrese una dirección" required>
                 </div>    
                 
                 <div class="col-md-2">
@@ -127,7 +127,7 @@
                     method: "GET",
                     data: {operacion: "departamento"},
                     success: function (data, textStatus, jqXHR) {
-                        console.log(data);
+                        //console.log(data);
                         let obj = $.parseJSON(data);
                         $.each(obj, function (key, value) {
                             $('#departamento').append('<option value="' + value.idDepartamento + '">' + value.departamento + '</option>');

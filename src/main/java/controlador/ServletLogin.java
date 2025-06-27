@@ -10,6 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -44,6 +45,8 @@ public class ServletLogin extends HttpServlet {
             switch (resultado) {
                 case 1:
                     try {
+                        HttpSession objetoSesion = request.getSession(true);
+                        objetoSesion.setAttribute("Cargo", resultado);
                         response.sendRedirect("vista/gerente.jsp");
                     } catch (Exception e) {
                         out.print("Error en el login: " + e);
@@ -51,6 +54,8 @@ public class ServletLogin extends HttpServlet {
                     break;
                 case 2:
                     try {
+                        HttpSession objetoSesion = request.getSession(true);
+                        objetoSesion.setAttribute("Cargo", resultado);
                         response.sendRedirect("vista/gerenteTecnico.jsp");
                     } catch (Exception e) {
                         out.print("Error en el login: " + e);
@@ -58,6 +63,8 @@ public class ServletLogin extends HttpServlet {
                     break;
                 case 3:
                     try {
+                        HttpSession objetoSesion = request.getSession(true);
+                        objetoSesion.setAttribute("Cargo", resultado);
                         response.sendRedirect("vista/almacenista.jsp");
                     } catch (Exception e) {
                         out.print("Error en el login: " + e);
@@ -65,6 +72,8 @@ public class ServletLogin extends HttpServlet {
                     break;
                 case 4:
                     try {
+                        HttpSession objetoSesion = request.getSession(true);
+                        objetoSesion.setAttribute("Cargo", resultado);
                         response.sendRedirect("vista/auxiliarContable.jsp");
                     } catch (Exception e) {
                         out.print("Error en el login: " + e);
@@ -73,6 +82,8 @@ public class ServletLogin extends HttpServlet {
 
                 case 5:
                     try {
+                        HttpSession objetoSesion = request.getSession(true);
+                        objetoSesion.setAttribute("Cargo", resultado);
                         response.sendRedirect("vista/auxiliarAlmacen.jsp");
                     } catch (Exception e) {
                         out.print("Error en el login: " + e);
@@ -80,6 +91,8 @@ public class ServletLogin extends HttpServlet {
                     break;
                 case 6:
                     try {
+                        HttpSession objetoSesion = request.getSession(true);
+                        objetoSesion.setAttribute("Cargo", resultado);
                         response.sendRedirect("vista/soporte.jsp");
                     } catch (Exception e) {
                         out.print("Error en el login: " + e);

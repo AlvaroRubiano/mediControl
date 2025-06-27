@@ -78,6 +78,7 @@ public class ConsultaUsuario extends Conexion {
     }
     
     
+    
     /**     
     public static void main(String[] args) {
         
