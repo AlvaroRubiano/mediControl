@@ -19,7 +19,7 @@
     </head>
     <body>
         <%-- Header --%>
-        <%@include file="../../plantillas/header.jsp" %>
+        <%@include file="../../../plantillas/header.jsp" %>
         <%-- Body --%>
 
         <div class="container">
@@ -127,7 +127,7 @@
                     method: "GET",
                     data: {operacion: "departamento"},
                     success: function (data, textStatus, jqXHR) {
-                        console.log(data);
+                        //console.log(data);
                         let obj = $.parseJSON(data);
                         $.each(obj, function (key, value) {
                             $('#departamento').append('<option value="' + value.idDepartamento + '">' + value.departamento + '</option>');

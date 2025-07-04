@@ -5,6 +5,16 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%--
+    HttpSession objetoSession = request.getSession(false);
+    String cargo = (String)objetoSession.getAttribute("Cargo");
+    if(cargo.equals(" ")){
+        response.sendRedirect("../index.jsp");
+    }  
+--%>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,6 +30,8 @@
         <h1>Almacenista</h1>
                 
         <a class="btn btn-primary" href="vistas/crearColaborador.jsp" role="button">Colaborador</a>
+        <a class="btn btn-primary" href="vistas/crearEspecialista.jsp" role="button">Especialista</a>
+        <a class="btn btn-primary" href="vistas/crearClinica.jsp" role="button">Clinica</a>
         
         <a class="btn btn-primary" href="../../index.jsp" role="button">Salir</a>
         

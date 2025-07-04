@@ -19,7 +19,7 @@
     </head>
     <body>
         <%-- Header --%>
-        <%@include file="../../plantillas/header.jsp" %>
+        <%@include file="../../../plantillas/header.jsp" %>
         <%-- Body --%>
 
         <div class="container">

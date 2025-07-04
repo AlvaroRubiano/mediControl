@@ -12,6 +12,14 @@
         <servlet-name>DepartamentoCiudad</servlet-name>
         <servlet-class>controlador.ServletDepartamentoCiudad</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Especialista</servlet-name>
+        <servlet-class>controlador.ServletCrearEspecialista</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Clinica</servlet-name>
+        <servlet-class>controlador.ServletCrearClinica</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -23,5 +31,13 @@
     <servlet-mapping>
         <servlet-name>DepartamentoCiudad</servlet-name>
         <url-pattern>/DepartamentoCiudad</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Especialista</servlet-name>
+        <url-pattern>/CrearEspecialista</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Clinica</servlet-name>
+        <url-pattern>/CrearClinica</url-pattern>
     </servlet-mapping>
 </web-app>
