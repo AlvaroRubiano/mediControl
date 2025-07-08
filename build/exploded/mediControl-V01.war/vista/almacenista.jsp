@@ -32,6 +32,7 @@
         <a class="btn btn-primary" href="vistas/crearColaborador.jsp" role="button">Colaborador</a>
         <a class="btn btn-primary" href="vistas/crearEspecialista.jsp" role="button">Especialista</a>
         <a class="btn btn-primary" href="vistas/crearClinica.jsp" role="button">Clinica</a>
+        <a class="btn btn-primary" href="vistas/crearProveedor.jsp" role="button">Proveedor</a>
         
         <a class="btn btn-primary" href="../../index.jsp" role="button">Salir</a>
         

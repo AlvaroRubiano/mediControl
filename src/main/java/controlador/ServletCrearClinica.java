@@ -32,14 +32,13 @@ public class ServletCrearClinica extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        int nit = Integer.parseInt(request.getParameter("nit"));
-        String nombre = request.getParameter("nombres");
-        String direccion = request.getParameter("direccion");
-        int idCiudad = Integer.parseInt(request.getParameter("ciudad"));
-        
         String boton = request.getParameter("crearClinica");
         
         if(boton.equals("crearClinica")){
+            int nit = Integer.parseInt(request.getParameter("nit"));
+            String nombre = request.getParameter("nombres");
+            String direccion = request.getParameter("direccion");
+            int idCiudad = Integer.parseInt(request.getParameter("ciudad"));
             
             ConsultaCllinica consulta = new ConsultaCllinica();
             

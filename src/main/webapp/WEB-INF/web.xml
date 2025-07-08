@@ -20,6 +20,10 @@
         <servlet-name>Clinica</servlet-name>
         <servlet-class>controlador.ServletCrearClinica</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Proveedor</servlet-name>
+        <servlet-class>controlador.ServletProveedor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -39,5 +43,9 @@
     <servlet-mapping>
         <servlet-name>Clinica</servlet-name>
         <url-pattern>/CrearClinica</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Proveedor</servlet-name>
+        <url-pattern>/Proveedor</url-pattern>
     </servlet-mapping>
 </web-app>

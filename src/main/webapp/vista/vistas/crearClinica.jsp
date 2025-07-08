@@ -26,17 +26,17 @@
         <div class="container">
             <form action="../../CrearClinica" method="POST" class="row g-3">
                 
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <label for="inputNit" class="form-label">NIT</label>
                     <input type="text"id="nit" name="nit" class="form-control"  title="Ingrese el número de NIT" required="">
                 </div>
                 
                 <div class="col-md-3">
                     <label for="inputNombre" class="form-label">Nombre del Centro Médico</label>
-                    <input type="text"id="nombres" name="nombres" class="form-control"  title="Ingrese nombres y apellidos" required="">
+                    <input type="text"id="nombres" name="nombres" class="form-control"  title="Ingrese el nombre del cliente" required="">
                 </div>
                 
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <label for="inputDireccion" class="form-label">Dirección</label>
                     <input type="text"id="direccion" name="direccion" class="form-control"  title="Ingrese la dirección" required="">
                 </div>
