@@ -8,6 +8,12 @@
 <%@page import="controlador.ConsultaIndicativo"%>
 <%@page import="controlador.ConsultaCargo"%>
 <%@page import="controlador.ConsultaDepartamento"%>
+<%@page import="controlador.Conexion"%>
+
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,15 +25,79 @@
     </head>
     <body>
         <%-- Header --%>
-        <%@include file="../../../plantillas/header.jsp" %>
+        <%@include file="../../plantillas/header_1.jsp" %>
         <%-- Body --%>
 
         <div class="container">
             <center>
-                <h4>Crear nuevo colaborador</h4>
+                <h4>Lista de colaboradores</h4>
             </center>                    
         </div>
+        
+        <%-- Tabla --%>
+        <div class="container">
+            <div class="input-group w-50">                
+                <input type="search" id="buscar" class="form-control" placeholder="Buscar..." aria-label="Input group example" aria-describedby="basic-addon1">
+                <span class="input-group-text" id="lupa">
+                    <img src="../../publico/iconos/search.svg" width="30" height="24">  
+                </span>
+            </div>
+            <div class="table-responsive">
+                <table id="tabla" class="table table-bordered table-striped table-hover" style="width:100%">
+                    <thead class="text-center">
+                        <tr>
+                            <th>Identificación</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Telefono</th>
+                            <th>Dirección</th>
+                            <th>RH</th>
+                            <th>Ciudad</th>
+                            <th>Cargo</th>                                                        
+                            <th>Fecha Nacimiento</th>                                                        
+                            <th>Fecha Ingreso</th>                                                        
+                            <th>Fecha Salida</th>                                                        
+                        </tr>
+                    </thead>
+                    <%  Conexion conexion = new Conexion();
+                        PreparedStatement ps = null;
+                        ResultSet rs = null;
 
+                        String consulta = "SELECT identificacion, nombre, correo, telefono, direccion, rh, ciudad.ciudad, cargo.cargo, nacimiento, ingreso, salida FROM colaborador, ciudad, cargo WHERE colaborador.idCiudad=ciudad.idCiudad AND colaborador.idCargo = cargo.idCargo";
+                        
+                        ps = (PreparedStatement) conexion.conectar().prepareStatement(consulta);
+                        rs = ps.executeQuery();
+                        while (rs.next()) {
+                    %>
+                    <tbody id="tablaActividades" class="text-center">
+                        <tr>
+                        <td class="text-center"><%= rs.getInt("identificacion")%></td>
+                        <td class="text-center"><%= rs.getString("nombre")%></td>
+                        <td class="text-center"><%= rs.getString("correo")%></td>
+                        <td class="text-center"><%= rs.getString("telefono")%></td>
+                        <td class="text-center"><%= rs.getString("direccion")%></td>
+                        <td class="text-center"><%= rs.getString("rh")%></td>
+                        <td class="text-center"><%= rs.getString("ciudad.ciudad")%></td>
+                        <td class="text-center"><%= rs.getString("cargo.cargo")%></td>
+                        <td class="text-center"><%= rs.getDate("nacimiento")%></td>
+                        <td class="text-center"><%= rs.getDate("ingreso")%></td>
+                        <td class="text-center"><%= rs.getDate("salida")%></td>
+                        <td class="align-content-lg-center"><center>                        
+                            <a href=""><img src="../../publico/iconos/documents.png" width="30" height="24"></a>                       
+                            </center></td>
+                    </tr>
+                    <% };%>
+                    </tbody>                                
+                </table>
+            </div>                    
+        </div>
+        
+        <%-- Fin de la tabla --%>
+        <div class="container">
+            <center>
+                <h4>Crear un nuevo colaborador</h4>
+            </center>                    
+        </div>
         <div class="container">
             <form action="../../Colaborador" method="POST" class="row g-3">
                 
@@ -120,6 +190,8 @@
         <%@include file="../../plantillas/footer.jsp" %>
         <script src="../../publico/js/bootstrap.js" type="text/javascript"  ></script>
         <script src="../../publico/js/jQuery_3.7.1.js" type="text/javascript"  ></script>
+        <script src="../../publico/js/javascript.js" type="text/javascript"  ></script>
+        
         <script type="text/javascript">
             $(document).ready(function () {
                 $.ajax({

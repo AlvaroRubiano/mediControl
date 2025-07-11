@@ -17,7 +17,7 @@
             <nav class="navbar bg-body-tertiary">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
-                        <img src="../imagenes/Logo_MEDIINSUMOS.svg" alt="Logo" width="500" height="100" class="d-inline-block align-text-top">                        
+                        <img src="../../imagenes/Logo_MEDIINSUMOS.svg" alt="Logo" width="500" height="100" class="d-inline-block align-text-top">                        
                     </a>
                 </div>
             </nav>

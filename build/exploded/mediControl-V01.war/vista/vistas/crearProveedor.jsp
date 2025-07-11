@@ -32,7 +32,7 @@
                 </div>
                 
                 <div class="col-md-3">
-                    <label for="inputNombre" class="form-label">Nombre del Centro Médico</label>
+                    <label for="inputNombre" class="form-label">Nombre del Proveedor</label>
                     <input type="text"id="nombres" name="nombres" class="form-control"  title="Ingrese nombre del proveedor" required="">
                 </div>
                 

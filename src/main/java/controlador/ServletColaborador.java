@@ -56,7 +56,7 @@ public class ServletColaborador extends HttpServlet {
             
             if(resultado.equals(true)){
                 JOptionPane.showMessageDialog(null, "Colaborador creado con éxito");
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("vista/vistas/crearColaborador.jsp");
             }//Fin del if interno
             
             if(resultado.equals(false)){
