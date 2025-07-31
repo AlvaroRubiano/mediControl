@@ -19,19 +19,22 @@ import modelo.Proveedor;
 public class ConsultaProveedor {
     
     //Metodo para crear proveedores
-    public boolean crearProveedor(int nit, String nombre, String direccion, int ciudad){
+    public boolean crearProveedor(int nit, String nombre, String direccion, String telefono, String contacto, String correo, int ciudad){
     
         PreparedStatement pst = null;
         ResultSet rs = null;
         
         try {
-            String consulta = "INSERT INTO proveedor (nit,nombre,direccion,idCiudad) VALUES (?,?,?,?)";
+            String consulta = "INSERT INTO proveedor (identificacion,nombre,direccion,telefono,contacto,correo,idCiudad) VALUES (?,?,?,?,?,?,?)";
             pst =(PreparedStatement) conectar().prepareStatement(consulta);
             
             pst.setInt(1,nit);
             pst.setString(2,nombre);
             pst.setString(3,direccion);
-            pst.setInt(4,ciudad);
+            pst.setString(4,telefono);
+            pst.setString(5,contacto);
+            pst.setString(6,correo);
+            pst.setInt(7,ciudad);
             
             if(pst.executeUpdate() ==1){            
               return true;                      
@@ -50,6 +53,35 @@ public class ConsultaProveedor {
     
         return false;
     }
+    
+    //Metodo para modificar proveedores
+    public boolean modificarProveedor(int nit, String direccion, String telefono, String contacto, String correo, int ciudad){
+        
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        
+         try {
+            String consulta = "UPDATE proveedor SET direccion='"+direccion+"', telefono='"+telefono+"', contacto='"+contacto+"', correo='"+correo+"', idCiudad='"+ciudad+"' WHERE nit ="+nit;
+            pst =(PreparedStatement) conectar().prepareStatement(consulta);
+            
+            if(pst.executeUpdate() ==1){            
+              return true;                      
+            }else{
+                JOptionPane.showMessageDialog(null, "Error en la sentencia SQL");
+            }
+            
+        } catch (SQLException e) {
+        }finally{
+            try {
+                pst.close();
+            } catch (Exception e2) {
+                JOptionPane.showMessageDialog(null, "Error en el cierre de la conexión: "+ e2);                
+            }
+        }
+        
+        return false;
+    }
+    
     
     //Metodo para consulta básica de los proveedores
     public ArrayList<Proveedor> obtenerProveedor(){
@@ -70,7 +102,10 @@ public class ConsultaProveedor {
                         rs.getInt(1), 
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getInt(4)
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getInt(7)
                 ));
             }
 
@@ -102,5 +137,14 @@ public class ConsultaProveedor {
         return htmlcode;
     }
     
+    
+    public static void main(String[] args) {
+        
+        
+        
+        
+        
+        
+    }
     
 }

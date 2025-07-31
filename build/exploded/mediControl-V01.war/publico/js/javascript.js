@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
 
+//Funcion para buscar el contenido en las tablas
 $(function buscar() {
     document.getElementById("lupa").onclick = function () {
 

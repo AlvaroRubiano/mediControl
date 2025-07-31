@@ -10,6 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,42 +32,89 @@ public class ServletColaborador extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
-        String boton = request.getParameter("crearColaborador");
-        
-        if(boton.equals("crearColaborador")){        
-        
-        int identificacion = Integer.parseInt(request.getParameter("identificacion"));
-        String nombre = request.getParameter("nombres");
-        String correo = request.getParameter("correo");
-        String indicativo = request.getParameter("indicativo");
-        String celular = request.getParameter("celular");
-        String dirección = request.getParameter("direccion");
-        String rh = request.getParameter("rh");
-        int ciudad = Integer.parseInt(request.getParameter("ciudad"));
-        String natalidad = request.getParameter("cumpleanos");
-        String ingreso = request.getParameter("ingreso");
-        int cargo = Integer.parseInt(request.getParameter("cargo"));
-        
-        String telefono = indicativo+celular;
-        
-        ConsultaColaborador consulta = new ConsultaColaborador();
-        
-        Boolean resultado = consulta.crearColaborador(identificacion, nombre, correo, telefono, dirección, rh, ciudad, cargo, natalidad, ingreso);
-            
-            if(resultado.equals(true)){
+
+        String boton = request.getParameter("btnColaborador");
+
+        if (boton.equals("crearColaborador")) {
+
+            int identificacion = Integer.parseInt(request.getParameter("identificacion"));
+            String nombre = request.getParameter("nombres");
+            String correo = request.getParameter("correo");
+            String telefono = request.getParameter("celular");
+            String direccion = request.getParameter("direccion");
+            int rh = Integer.parseInt(request.getParameter("rh"));
+            int ciudad = Integer.parseInt(request.getParameter("ciudad"));
+            Date natalidad = Date.valueOf(request.getParameter("cumpleanos"));
+            Date ingreso = Date.valueOf(request.getParameter("ingreso"));
+            int cargo = Integer.parseInt(request.getParameter("cargo"));
+
+            ConsultaColaborador consulta = new ConsultaColaborador();
+
+            Boolean resultado = consulta.crearColaborador(identificacion, nombre, correo, telefono, direccion, rh, ciudad, cargo, natalidad, ingreso);
+
+            if (resultado.equals(true)) {
                 JOptionPane.showMessageDialog(null, "Colaborador creado con éxito");
                 response.sendRedirect("vista/vistas/crearColaborador.jsp");
             }//Fin del if interno
-            
-            if(resultado.equals(false)){
+
+            if (resultado.equals(false)) {
                 JOptionPane.showMessageDialog(null, "Error en la creación del colaborador");
                 response.sendRedirect("index.jsp");
             }
-        
-        
-        }//Fin del If
-        
+
+        }//Fin del If de crear
+
+        if (boton.equals("modificarColaborador")) {
+
+            int identificacion = Integer.parseInt(request.getParameter("identificacion"));
+            
+            String correo = request.getParameter("correo");
+            
+            String indicativo = request.getParameter("indicativo");
+            String telefono = request.getParameter("celular");
+            String direccion = request.getParameter("direccion");
+            int ciudad = Integer.parseInt(request.getParameter("ciudad"));
+            int cargo = Integer.parseInt(request.getParameter("cargo"));            
+
+            ConsultaColaborador consulta = new ConsultaColaborador();
+            
+            Boolean resultado = consulta.modificarColaborador(identificacion, correo, telefono, direccion, ciudad, cargo);
+
+            if (resultado.equals(true)) {
+                JOptionPane.showMessageDialog(null, "Colaborador actualizado con éxito");
+                response.sendRedirect("vista/vistas/crearColaborador.jsp");
+            }//Fin del if interno
+
+            if (resultado.equals(false)) {
+                JOptionPane.showMessageDialog(null, "Error en la actualización del colaborador");
+                response.sendRedirect("index.jsp");
+            }
+            
+
+        }//Fin del If de modificar
+
+        if (boton.equals("terminarColaborador")) {
+
+            int identificacion = Integer.parseInt(request.getParameter("identificacion"));
+            
+            Date finalizacion = Date.valueOf(request.getParameter("salida"));
+            
+            ConsultaColaborador consulta = new ConsultaColaborador();
+            
+            Boolean resultado = consulta.terminarColaborador(identificacion, finalizacion);
+
+            if (resultado.equals(true)) {
+                JOptionPane.showMessageDialog(null, "Contrato terminado con éxito");
+                response.sendRedirect("vista/vistas/crearColaborador.jsp");
+            }//Fin del if interno
+
+            if (resultado.equals(false)) {
+                JOptionPane.showMessageDialog(null, "Error en la terminación del contrato");
+                response.sendRedirect("index.jsp");
+            }
+            
+
+        }//Fin del If de terminar contrato
         
         
     }

@@ -10,30 +10,30 @@ package modelo;
  */
 public class Especialista {
     
-    private int registro;
+    private String identificacion;
     private String nombre;
     private int idCiudad;
 
     public Especialista() {
     }
 
-    public Especialista(int registro, String nombre, int idCiudad) {
-        this.registro = registro;
+    public Especialista(String identificacion, String nombre, int idCiudad) {
+        this.identificacion = identificacion;
         this.nombre = nombre;
         this.idCiudad = idCiudad;
     }
     
-    public Especialista(int registro, String nombre) {
-        this.registro = registro;
+    public Especialista(String identificacion, String nombre) {
+        this.identificacion = identificacion;
         this.nombre = nombre;        
     }
 
-    public int getRegistro() {
-        return registro;
+    public String getIdentificacion() {
+        return identificacion;
     }
 
-    public void setRegistro(int registro) {
-        this.registro = registro;
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
     }
 
     public String getNombre() {

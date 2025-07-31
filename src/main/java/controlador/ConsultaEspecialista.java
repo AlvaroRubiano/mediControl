@@ -18,16 +18,16 @@ import modelo.Especialista;
 public class ConsultaEspecialista extends Conexion {
     
     //Metodo para crear especialistas
-    public boolean crearEspecialista(int registro, String nombre, int ciudad){
+    public boolean crearEspecialista(String identificacion, String nombre, int ciudad){
     
         PreparedStatement pst = null;
         ResultSet rs = null;
         
         try {
-            String consulta = "INSERT INTO especialista (registro,nombre,idCiudad) VALUES (?,?,?)";
+            String consulta = "INSERT INTO especialista (identificacion,nombre,idCiudad) VALUES (?,?,?)";
             pst =(PreparedStatement) conectar().prepareStatement(consulta);
             
-            pst.setInt(1,registro);
+            pst.setString(1,identificacion);
             pst.setString(2,nombre);
             pst.setInt(3,ciudad);
             
@@ -65,7 +65,7 @@ public class ConsultaEspecialista extends Conexion {
 
             while (rs.next()) {
                 objeto.add(new Especialista(
-                        rs.getInt(1), 
+                        rs.getString(1), 
                         rs.getString(2),
                         rs.getInt(3)
                 ));
@@ -95,7 +95,7 @@ public class ConsultaEspecialista extends Conexion {
     public String obtenerSelectEspecialista(){
         String htmlcode = "";
         ConsultaEspecialista estadoConsulta = new ConsultaEspecialista();
-        htmlcode = estadoConsulta.obtenerEspecialista().stream().map(f -> "<option value='"+f.getRegistro()+"'>"+f.getNombre()+"</option>").reduce(htmlcode, String::concat);
+        htmlcode = estadoConsulta.obtenerEspecialista().stream().map(f -> "<option value='"+f.getIdentificacion()+"'>"+f.getNombre()+"</option>").reduce(htmlcode, String::concat);
         return htmlcode;
     }
     

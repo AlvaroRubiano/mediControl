@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import java.sql.Date;
+
 /**
  *
  * @author Alvaro Rubiano
@@ -15,17 +17,17 @@ public class Colaborador {
     private String correo;
     private String telefono;
     private String direccion;
-    private String rh;
+    private int rh;
     private int ciudad;
     private int cargo;
-    private String natalidad;
-    private String ingreso;
-    private String salida;
+    private Date natalidad;
+    private Date ingreso;
+    private Date salida;
 
     public Colaborador() {
     }
 
-    public Colaborador(int identificacion, String nombre, String correo, String telefono, String direccion, String rh, int ciudad, int cargo, String natalidad, String ingreso) {
+    public Colaborador(int identificacion, String nombre, String correo, String telefono, String direccion, int rh, int ciudad, int cargo, Date natalidad, Date ingreso) {
         this.identificacion = identificacion;
         this.nombre = nombre;
         this.correo = correo;
@@ -70,11 +72,11 @@ public class Colaborador {
         this.direccion = direccion;
     }
 
-    public String getRh() {
+    public int getRh() {
         return rh;
     }
 
-    public void setRh(String rh) {
+    public void setRh(int rh) {
         this.rh = rh;
     }
 
@@ -102,19 +104,19 @@ public class Colaborador {
         this.correo = correo;
     }
 
-    public String getNatalidad() {
+    public Date getNatalidad() {
         return natalidad;
     }
 
-    public void setNatalidad(String natalidad) {
+    public void setNatalidad(Date natalidad) {
         this.natalidad = natalidad;
     }
 
-    public String getIngreso() {
+    public Date getIngreso() {
         return ingreso;
     }
 
-    public void setIngreso(String ingreso) {
+    public void setIngreso(Date ingreso) {
         this.ingreso = ingreso;
     }
     

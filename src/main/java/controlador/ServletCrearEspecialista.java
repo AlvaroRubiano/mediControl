@@ -32,7 +32,7 @@ public class ServletCrearEspecialista extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        int registro = Integer.parseInt(request.getParameter("registro"));
+        String registro = request.getParameter("registro");
         String nombre = request.getParameter("nombres");
         int idCiudad = Integer.parseInt(request.getParameter("ciudad"));
         
@@ -49,7 +49,7 @@ public class ServletCrearEspecialista extends HttpServlet {
             
             if(resultado.equals(true)){
                 JOptionPane.showMessageDialog(null, "Especialista creado con éxito");
-                response.sendRedirect("vista/almacenista.jsp");                
+                response.sendRedirect("vista/vistas/crearEspecialista.jsp");                
             }else{
                 JOptionPane.showMessageDialog(null, "Error en la creación del colaborador");
                 response.sendRedirect("vista/error.jsp");            

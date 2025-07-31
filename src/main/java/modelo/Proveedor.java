@@ -13,15 +13,21 @@ public class Proveedor {
     private int nit;
     private String nombre;
     private String dirección;
+    private String telefono;
+    private String correo;
+    private String contacto;
     private int idCiudad;
 
     public Proveedor() {
     }
 
-    public Proveedor(int nit, String nombre, String dirección, int idCiudad) {
+    public Proveedor(int nit, String nombre, String dirección, String telefono, String correo, String contacto, int idCiudad) {
         this.nit = nit;
         this.nombre = nombre;
         this.dirección = dirección;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.contacto = contacto;
         this.idCiudad = idCiudad;
     }
 
@@ -49,6 +55,30 @@ public class Proveedor {
         this.dirección = dirección;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getContacto() {
+        return contacto;
+    }
+
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
+    }
+
     public int getIdCiudad() {
         return idCiudad;
     }
@@ -56,6 +86,7 @@ public class Proveedor {
     public void setIdCiudad(int idCiudad) {
         this.idCiudad = idCiudad;
     }
+
     
     
     

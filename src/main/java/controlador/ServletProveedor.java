@@ -32,18 +32,23 @@ public class ServletProveedor extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        String boton = request.getParameter("crearProveedor");
+        String boton = request.getParameter("btnProveedor");
         
         if(boton.equals("crearProveedor")){
             
             int nit = Integer.parseInt(request.getParameter("nit"));
-            String nombre = request.getParameter("nombres");
+            String nombre = request.getParameter("nombre");
             String direccion = request.getParameter("direccion");
+            String telefono = request.getParameter("telefono");
+            String contacto = request.getParameter("contacto");
+            String correo = request.getParameter("correo");
             int idCiudad = Integer.parseInt(request.getParameter("ciudad"));
             
             ConsultaProveedor consulta = new ConsultaProveedor();
             
-            Boolean resultado =  consulta.crearProveedor(nit, nombre, direccion, idCiudad);
+            JOptionPane.showMessageDialog(null, "Nit: "+nit);
+            
+            Boolean resultado =  consulta.crearProveedor(nit, nombre, direccion, telefono, contacto, correo, idCiudad);
             
             if(resultado.equals(true)){
                 JOptionPane.showMessageDialog(null, "Proveedor creado con éxito");
@@ -54,8 +59,31 @@ public class ServletProveedor extends HttpServlet {
             
         }else{
             response.sendRedirect("vista/error.jsp");
-        }
+        }//Fin del if de crear
         
+        if(boton.equals("modificarProveedor")){
+            
+            int nit = Integer.parseInt(request.getParameter("nit"));
+            String direccion = request.getParameter("direccion");
+            String telefono = request.getParameter("telefono");
+            String contacto = request.getParameter("contacto");
+            String correo = request.getParameter("correo");
+            int idCiudad = Integer.parseInt(request.getParameter("ciudad"));
+            
+            ConsultaProveedor consulta = new ConsultaProveedor();
+            
+            Boolean resultado =  consulta.modificarProveedor(nit, direccion, telefono, contacto, correo, idCiudad);
+            
+            if(resultado.equals(true)){
+                JOptionPane.showMessageDialog(null, "Proveedor modificado con éxito");
+                response.sendRedirect("vista/vistas/crearProveedor.jsp");
+            }else{
+                response.sendRedirect("vista/error.jsp");
+            }            
+            
+        }else{
+            response.sendRedirect("vista/error.jsp");
+        }//Fin del if de crear
         
         
     }

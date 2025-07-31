@@ -46,7 +46,7 @@ public class ServletCrearClinica extends HttpServlet {
             
             if(resultado.equals(true)){
                 JOptionPane.showMessageDialog(null, "Centro medico creado con éxito");
-                response.sendRedirect("vista/almacenista.jsp");
+                response.sendRedirect("vista/vistas/crearClinica.jsp");
             }else{
                 response.sendRedirect("vista/error.jsp");
             }            

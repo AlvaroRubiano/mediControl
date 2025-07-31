@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import modelo.Clinica;
+import modelo.Cliente;
 
 /**
  *
@@ -19,16 +19,16 @@ import modelo.Clinica;
 public class ConsultaCllinica extends Conexion {
     
     //Metodo para crear clinicas o centros médicos
-    public boolean crearClinica(int nit, String nombre, String direccion, int ciudad){
+    public boolean crearClinica(int identificacion, String nombre, String direccion, int ciudad){
     
         PreparedStatement pst = null;
         ResultSet rs = null;
         
         try {
-            String consulta = "INSERT INTO clinica (nit,nombre,direccion,idCiudad) VALUES (?,?,?,?)";
+            String consulta = "INSERT INTO cliente (identificacion,nombre,direccion,idCiudad) VALUES (?,?,?,?)";
             pst =(PreparedStatement) conectar().prepareStatement(consulta);
             
-            pst.setInt(1,nit);
+            pst.setInt(1,identificacion);
             pst.setString(2,nombre);
             pst.setString(3,direccion);
             pst.setInt(4,ciudad);
@@ -52,13 +52,13 @@ public class ConsultaCllinica extends Conexion {
     }
     
     //Metodo para consulta básica de las clinicas o centros médicos
-    public ArrayList<Clinica> obtenerClinica(){
+    public ArrayList<Cliente> obtenerClinica(){
         
         //Preparando la consulta a la base de datos
         PreparedStatement pst = null;
         ResultSet rs = null;
           
-        ArrayList<Clinica> objeto = new ArrayList<>();
+        ArrayList<Cliente> objeto = new ArrayList<>();
 
         try {
             String consulta = "SELECT * FROM clinica";
@@ -66,7 +66,7 @@ public class ConsultaCllinica extends Conexion {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                objeto.add(new Clinica(
+                objeto.add(new Cliente(
                         rs.getInt(1), 
                         rs.getString(2),
                         rs.getString(3),
