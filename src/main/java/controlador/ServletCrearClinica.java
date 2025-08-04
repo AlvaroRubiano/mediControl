@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author kelly
+ * @author Alvaro Rubiano
  */
 public class ServletCrearClinica extends HttpServlet {
 

@@ -21,6 +21,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="../../publico/css/bootstrap.css" type="text/css" rel="stylesheet" />
         <title>Modificar Proveedor</title>
     </head>
     <body>
@@ -65,15 +66,15 @@
         %>
 
         <div class="container">
-            <form action="../../Colaborador" method="POST" class="row g-3">
+            <form action="../../Proveedor" method="POST" class="row g-3">
                 <div class="col-md-2">
                     <label for="inputColaborador" class="form-label">Identificación</label>
-                    <input type="text" value="<%= rs.getInt("identificacion")%>" id="identificacion" name="identificacion" class="form-control" readonly="">
+                    <input type="text" value="<%= rs.getInt("identificacion")%>" id="identificacion" name="identificacion" class="form-control" readonly>
                 </div>
 
                 <div class="col-md-6">
                     <label for="inputNombre" class="form-label">Proveedor</label>
-                    <input type="text" value="<%= rs.getString("nombre")%>" id="nombre" name="nombre" class="form-control" readonly="">
+                    <input type="text" value="<%= rs.getString("nombre")%>" id="nombre" name="nombre" class="form-control" readonly>
                 </div>
 
                 <div class="col-md-4">
@@ -88,7 +89,7 @@
 
                 <div class="col-md-4">
                     <label for="inputContacto" class="form-label">Contacto</label>
-                    <input type="text" value="<%= rs.getString("contaccto")%>" id="contacto" name="contacto" class="form-control" required>
+                    <input type="text" value="<%= rs.getString("contacto")%>" id="contacto" name="contacto" class="form-control" required>
                 </div>    
                 
                 <div class="col-md-4">
@@ -99,21 +100,19 @@
                 <div class="col-md-2">
                     <label for="departamento" class="form-label">Departamento</label>
                     <select id="departamento" name="departamento" class="form-select">
-                        <option selected value="<%= rs.getInt("ciudad.idDepartamento")%>"><%= rs.getString("departamento.departamento")%></option>
+                        <option selected value="<%= rs.getInt("ciudad.idDepartamento")%>"><%= rs.getString("departamento.departamento")%></option>                        
                     </select>                    
                 </div>
 
                 <div class="col-md-2">
                     <label for="ciudad" class="form-label">Ciudad</label>
                     <select id="ciudad" name="ciudad" class="form-select">
-                        <option selected value="<%= rs.getInt("proveedor.idCiudad")%>"><%= rs.getString("ciudad.ciudad")%></option>
-                        <% ConsultaCiudad ciudad = new ConsultaCiudad();%>
-                        <%= ciudad.obtenerSelectCiudad()%>
+                        <option selected value="<%= rs.getInt("proveedor.idCiudad")%>"><%= rs.getString("ciudad.ciudad")%></option>                        
                     </select>  
                 </div>                  
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" name="btnProveedor" value="modificarProveedor" class="btn btn-primary">Actualizar</button>                                    
+                    <button type="submit" name="btnProveedor" id="btnProveedor" value="modificarProveedor" class="btn btn-primary">Actualizar</button>                                    
                 </div>
             </form>
         </div>

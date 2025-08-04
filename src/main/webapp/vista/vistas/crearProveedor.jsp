@@ -121,7 +121,7 @@
 
                                 <div class="col-md-3">
                                     <label for="inputNit" class="form-label">NIT</label>
-                                    <input type="text" id="nit" name="nit" class="form-control"  title="Ingrese el número de NIT" required>
+                                    <input type="text" id="nit" name="nit" class="form-control"  title="Ingrese el número de NIT" pattern="[0-9]{9}" required>
                                 </div>
 
                                 <div class="col-md-4">

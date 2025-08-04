@@ -61,7 +61,7 @@ public class ConsultaProveedor {
         ResultSet rs = null;
         
          try {
-            String consulta = "UPDATE proveedor SET direccion='"+direccion+"', telefono='"+telefono+"', contacto='"+contacto+"', correo='"+correo+"', idCiudad='"+ciudad+"' WHERE nit ="+nit;
+            String consulta = "UPDATE proveedor SET direccion='"+direccion+"', telefono='"+telefono+"', contacto='"+contacto+"', correo='"+correo+"', idCiudad='"+ciudad+"' WHERE identificacion ="+nit;
             pst =(PreparedStatement) conectar().prepareStatement(consulta);
             
             if(pst.executeUpdate() ==1){            
@@ -138,13 +138,6 @@ public class ConsultaProveedor {
     }
     
     
-    public static void main(String[] args) {
-        
-        
-        
-        
-        
-        
-    }
+    
     
 }

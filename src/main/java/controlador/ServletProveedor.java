@@ -31,61 +31,71 @@ public class ServletProveedor extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         String boton = request.getParameter("btnProveedor");
-        
-        if(boton.equals("crearProveedor")){
-            
-            int nit = Integer.parseInt(request.getParameter("nit"));
-            String nombre = request.getParameter("nombre");
-            String direccion = request.getParameter("direccion");
-            String telefono = request.getParameter("telefono");
-            String contacto = request.getParameter("contacto");
-            String correo = request.getParameter("correo");
-            int idCiudad = Integer.parseInt(request.getParameter("ciudad"));
-            
-            ConsultaProveedor consulta = new ConsultaProveedor();
-            
-            JOptionPane.showMessageDialog(null, "Nit: "+nit);
-            
-            Boolean resultado =  consulta.crearProveedor(nit, nombre, direccion, telefono, contacto, correo, idCiudad);
-            
-            if(resultado.equals(true)){
-                JOptionPane.showMessageDialog(null, "Proveedor creado con éxito");
-                response.sendRedirect("vista/almacenista.jsp");
-            }else{
+
+                int nit = 0;
+                String nombre = "";
+                String direccion = "";
+                String telefono = "";
+                String contacto = "";
+                String correo = "";
+                int idCiudad = 0;    
+
+                Boolean resultado = false;
+                
+                ConsultaProveedor consulta = new ConsultaProveedor();
+
+        switch (boton) {
+            case "crearProveedor":
+
+                nit = Integer.parseInt(request.getParameter("nit"));
+                nombre = request.getParameter("nombre");
+                direccion = request.getParameter("direccion");
+                telefono = request.getParameter("telefono");
+                contacto = request.getParameter("contacto");
+                correo = request.getParameter("correo");
+                idCiudad = Integer.parseInt(request.getParameter("ciudad"));
+
+                resultado = consulta.crearProveedor(nit, nombre, direccion, telefono, contacto, correo, idCiudad);
+
+                if (resultado.equals(true)) {
+                    JOptionPane.showMessageDialog(null, "Proveedor creado con éxito");
+                    response.sendRedirect("vista/vistas/crearProveedor.jsp");
+                } else {
+                    response.sendRedirect("vista/error.jsp");
+                }
+
+                break;
+                
+            case "modificarProveedor":    
+                
+                nit = Integer.parseInt(request.getParameter("identificacion")); 
+                direccion = request.getParameter("direccion"); 
+                telefono = request.getParameter("telefono"); 
+                contacto = request.getParameter("contacto"); 
+                correo = request.getParameter("correo"); 
+                idCiudad = Integer.parseInt(request.getParameter("ciudad"));
+                
+                resultado = consulta.modificarProveedor(nit,direccion,telefono,contacto,correo,idCiudad);
+                
+                if (resultado.equals(true)) {
+                    JOptionPane.showMessageDialog(null, "Proveedor actualizado con éxito");
+                    response.sendRedirect("vista/vistas/crearProveedor.jsp");
+                } else {
+                    response.sendRedirect("vista/error.jsp");
+                }
+                
+                break;        
+                
+            default:
                 response.sendRedirect("vista/error.jsp");
-            }            
-            
-        }else{
-            response.sendRedirect("vista/error.jsp");
-        }//Fin del if de crear
-        
-        if(boton.equals("modificarProveedor")){
-            
-            int nit = Integer.parseInt(request.getParameter("nit"));
-            String direccion = request.getParameter("direccion");
-            String telefono = request.getParameter("telefono");
-            String contacto = request.getParameter("contacto");
-            String correo = request.getParameter("correo");
-            int idCiudad = Integer.parseInt(request.getParameter("ciudad"));
-            
-            ConsultaProveedor consulta = new ConsultaProveedor();
-            
-            Boolean resultado =  consulta.modificarProveedor(nit, direccion, telefono, contacto, correo, idCiudad);
-            
-            if(resultado.equals(true)){
-                JOptionPane.showMessageDialog(null, "Proveedor modificado con éxito");
-                response.sendRedirect("vista/vistas/crearProveedor.jsp");
-            }else{
-                response.sendRedirect("vista/error.jsp");
-            }            
-            
-        }else{
-            response.sendRedirect("vista/error.jsp");
-        }//Fin del if de crear
+                
+                
+        }//Fin del Switch
         
         
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
