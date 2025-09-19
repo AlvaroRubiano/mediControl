@@ -19,19 +19,18 @@ import modelo.Paciente;
 public class ConsultaPaciente {
     
     //Metodo para crear pacientes
-    public boolean crearPaciente(int cedula, String nombre, int ciudad, int clinica){
+    public boolean crearPaciente(long cedula, String nombre, int ciudad){
     
         PreparedStatement pst = null;
         ResultSet rs = null;
         
         try {
-            String consulta = "INSERT INTO paciente (cedula,nombre,idCiudad,idClinica) VALUES (?,?,?,?)";
+            String consulta = "INSERT INTO paciente (identificacion,nombre,idCiudad) VALUES (?,?,?)";
             pst =(PreparedStatement) conectar().prepareStatement(consulta);
             
-            pst.setInt(1,cedula);
+            pst.setLong(1,cedula);
             pst.setString(2,nombre);
             pst.setInt(3,ciudad);
-            pst.setInt(4,clinica);
             
             if(pst.executeUpdate() ==1){            
               return true;                      
@@ -67,10 +66,10 @@ public class ConsultaPaciente {
 
             while (rs.next()) {
                 objeto.add(new Paciente(
-                        rs.getInt(1), 
+                        rs.getLong(1), 
                         rs.getString(2),
-                        rs.getInt(3),
-                        rs.getInt(4)
+                        rs.getInt(3)
+                        
                 ));
             }
 

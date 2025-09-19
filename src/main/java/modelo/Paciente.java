@@ -10,26 +10,25 @@ package modelo;
  */
 public class Paciente {
     
-    private int cedula;
+    private long cedula;
     private String nombre;
     private int idCiudad;
-    private int idClinica;
-
+    
     public Paciente() {
     }
 
-    public Paciente(int cedula, String nombre, int idCiudad, int idClinica) {
+    public Paciente(long cedula, String nombre, int idCiudad ) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.idCiudad = idCiudad;
-        this.idClinica = idClinica;
+        
     }
 
-    public int getCedula() {
+    public long getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(long cedula) {
         this.cedula = cedula;
     }
 
@@ -49,14 +48,5 @@ public class Paciente {
         this.idCiudad = idCiudad;
     }
 
-    public int getIdClinica() {
-        return idClinica;
-    }
-
-    public void setIdClinica(int idClinica) {
-        this.idClinica = idClinica;
-    }
-    
-    
-    
+   
 }

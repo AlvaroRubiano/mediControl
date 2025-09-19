@@ -18,7 +18,7 @@ import modelo.Cliente;
  */
 public class ConsultaCllinica extends Conexion {
     
-    //Metodo para crear clinicas o centros médicos
+    //Metodo para crear clientes
     public boolean crearClinica(int identificacion, String nombre, String direccion, int ciudad){
     
         PreparedStatement pst = null;
@@ -50,6 +50,40 @@ public class ConsultaCllinica extends Conexion {
     
         return false;
     }
+    
+    //Metodo para crear clinicas o centros médicos
+    public boolean crearCentroMedico(Long identificacion, String nombre, String direccion, int ciudad){
+    
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        
+        try {
+            String consulta = "INSERT INTO centromedico (identificacion,nombre,direccion,idCiudad) VALUES (?,?,?,?)";
+            pst =(PreparedStatement) conectar().prepareStatement(consulta);
+            
+            pst.setLong(1,identificacion);
+            pst.setString(2,nombre);
+            pst.setString(3,direccion);
+            pst.setInt(4,ciudad);
+            
+            if(pst.executeUpdate() ==1){            
+              return true;                      
+            }else{
+                JOptionPane.showMessageDialog(null, "Error en la sentencia SQL");
+            }
+            
+        } catch (SQLException e) {
+        }finally{
+            try {
+                pst.close();
+            } catch (Exception e2) {
+                JOptionPane.showMessageDialog(null, "Error en el cierre de la conexión: "+ e2);                
+            }
+        }
+    
+        return false;
+    }
+    
     
     //Metodo para consulta básica de las clinicas o centros médicos
     public ArrayList<Cliente> obtenerClinica(){

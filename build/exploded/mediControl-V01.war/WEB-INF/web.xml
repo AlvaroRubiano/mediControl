@@ -32,6 +32,10 @@
         <servlet-name>Actividad</servlet-name>
         <servlet-class>controlador.ServletActividad</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Paciente</servlet-name>
+        <servlet-class>controlador.ServletPaciente</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -63,5 +67,9 @@
     <servlet-mapping>
         <servlet-name>Actividad</servlet-name>
         <url-pattern>/Actividad</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Paciente</servlet-name>
+        <url-pattern>/Paciente</url-pattern>
     </servlet-mapping>
 </web-app>

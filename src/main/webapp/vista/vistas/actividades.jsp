@@ -44,7 +44,9 @@
                             <th>Clinica</th>
                             <th>Fecha</th>
                             <th>Descripción</th>
-                            <th>Estado</th>                                                        
+                            <th>Estado</th>
+                            <th>Gasto</th>
+                            <th>Acción</th>
                         </tr>
                     </thead>
                     
@@ -54,9 +56,16 @@
                         <td class="text-center"></td>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
                         <td class="align-content-lg-center"><center>                        
                             <a href=""><img src="../../publico/iconos/documents.png" width="30" height="24"></a>                       
                             </center></td>
+                        <td class="align-content-lg-center"><center>                        
+                            <a href="../vistas/crearActividad.jsp"><img src="../../publico/iconos/editar.png" width="30" height="24"></a>                       
+                            </center></td>    
                     </tr>
                         
                     </tbody>                                

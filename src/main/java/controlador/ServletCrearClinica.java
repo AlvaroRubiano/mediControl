@@ -32,9 +32,9 @@ public class ServletCrearClinica extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        String boton = request.getParameter("crearClinica");
+        String boton = request.getParameter("crear");
         
-        if(boton.equals("crearClinica")){
+        if(boton.equals("crearCliente")){
             int nit = Integer.parseInt(request.getParameter("nit"));
             String nombre = request.getParameter("nombres");
             String direccion = request.getParameter("direccion");
@@ -45,8 +45,26 @@ public class ServletCrearClinica extends HttpServlet {
             Boolean resultado =  consulta.crearClinica(nit, nombre, direccion, idCiudad);
             
             if(resultado.equals(true)){
-                JOptionPane.showMessageDialog(null, "Centro medico creado con éxito");
+                JOptionPane.showMessageDialog(null, "Cliente creado con éxito");
                 response.sendRedirect("vista/vistas/crearClinica.jsp");
+            }else{
+                response.sendRedirect("vista/error.jsp");
+            }            
+        }
+        
+        if(boton.equals("crearCentroMedico")){
+            Long nit = Long.parseLong(request.getParameter("nit"));
+            String nombre = request.getParameter("nombres");
+            String direccion = request.getParameter("direccion");
+            int idCiudad = Integer.parseInt(request.getParameter("ciudad"));
+            
+            ConsultaCllinica consulta = new ConsultaCllinica();
+            
+            Boolean resultado =  consulta.crearCentroMedico(nit, nombre, direccion, idCiudad);
+            
+            if(resultado.equals(true)){
+                JOptionPane.showMessageDialog(null, "Centro medico creado con éxito");
+                response.sendRedirect("vista/vistas/centroMedico.jsp");
             }else{
                 response.sendRedirect("vista/error.jsp");
             }            
